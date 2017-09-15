@@ -33,6 +33,12 @@
         </ul>
         <% end %>
       </nav>
+      <nav>
+        <ul>
+          <li><%= link_to 'Celsius', root_path(unit: 'metric') %></li>
+          <li><%= link_to 'Fahrenheit', root_path(unit: 'imperial') %></li>
+        </ul>
+      </nav>
       <%= yield %>
       <svg id="outer"></svg>
       <footer><a href="https://codepen.io/steveg3003/pen/Gqakbo?q=weather%20icons&limit=all&order=popularity&depth=everything&show_forks=false">Design</a> by Steve Gardner</footer>

@@ -1,9 +1,8 @@
 class WeathersController < ApplicationController
   def index
-    # initialize sunny weather
-    @weather_type = 'cloud'
     # used to make http request
     require 'net/http'
+
     # get random city if there is no user input
     if params[:city_name].present?
       query = params[:city_name]
@@ -14,8 +13,15 @@ class WeathersController < ApplicationController
     end
     query = URI::escape(query)
 
+    # change unit when parameter appears
+    session[:unit] = params[:unit] if params[:unit].present?
+    @unit_letter = session[:unit] == 'metric' ? 'C' : 'F'
+
+    # initialize sunny weather
+    @weather_type = 'cloud'
+
     # sending request
-    url = URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{query}&appid=#{Rails.application.secrets.open_weather_key}&units=metric")
+    url = URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{query}&appid=#{Rails.application.secrets.open_weather_key}&units=#{session[:unit]}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)

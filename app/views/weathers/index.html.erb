@@ -16,7 +16,7 @@
     <g id="cloud1" class="cloud"></g>
   </svg>
   <div class="details">
-    <div class="temp"><%= @result['main']['temp'].round %><span>c</span></div>
+    <div class="temp"><%= @result['main']['temp'].round %><span><%= @unit_letter %></span></div>
     <div class="right">
       <div id="date"><%= Date.current %></div>
       <div id="place"><%= "#{@result['name']}, #{@result['sys']['country']}"%></div>
