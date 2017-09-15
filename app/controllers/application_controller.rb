@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # rescue_from StandardError, with: :unhandled_error
+  rescue_from StandardError, with: :unhandled_error
   rescue_from ActiveRecord::RecordNotFound, with: :missing_error
   rescue_from ActionController::RoutingError, with: :missing_error
 
@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   private
 
   def unhandled_error(exception)
-    render plain: '500 Something went wrong', status: :internal_server_error
-    # render file: 'public/500.html', layout: false
+    render file: 'public/500.html', status: :internal_server_error
     error_log(exception)
   end
 

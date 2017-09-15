@@ -10,7 +10,7 @@ RSpec.describe 'Todos API', type: :request do
     # make HTTP get request before each example
     before { get '/' }
 
-    it 'returns home page' do
+    it 'returns random city data' do
       expect(response.body).not_to be_empty
     end
 
@@ -38,6 +38,35 @@ RSpec.describe 'Todos API', type: :request do
       let(:city_name) { 'm' }
 
       before { get "/?city_name=#{city_name}" }
+
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
+
+      it 'returns a no data message' do
+        expect(response.body).to match /NO DATA/
+      end
+    end
+
+    context 'when the city name empty' do
+      let(:city_name) { '' }
+
+      before { get "/?city_name=#{city_name}" }
+
+      it 'returns random city data' do
+        expect(response.body).not_to be_empty
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
+  describe 'GET /unrouted_url' do
+    context 'when the city exists' do
+
+      before { get '/unrouted_url' }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
