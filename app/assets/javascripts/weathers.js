@@ -104,7 +104,7 @@ function init()
   // ☀️ set initial weather
 
   TweenMax.set(sunburst.node, {opacity: 0})
-  changeWeather(weathers[0]);
+  changeWeather(weathers[1]);
 }
 
 function onResize()

@@ -1,5 +1,4 @@
 @import 'https://fonts.googleapis.com/css?family=Lato:300';
-@import 'https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css';
 
 $speed: 2s;
 
@@ -32,10 +31,10 @@ body
 
 .container
 {
-    display: flex;
+  display: flex;
   flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -59,47 +58,51 @@ body
 
 nav
 {
+  width: 300px;
+
   ul
   {
-    margin: 20px 20px 0 20px;
-      list-style-type: none;
-      padding: 0;
+    margin: 20px 0 0;
+    list-style-type: none;
+    padding: 0;
     display: flex;
     flex-direction: row;
+  }
+
+  li * {
+    margin: 0 5px;
   }
 
   li a
   {
     display: block;
-    width: 50px;
+    width: 60px;
     text-align: center;
-    color: #aaa;
+    color: #444;
     cursor: pointer;
+    text-decoration: none;
+  }
 
-    &:hover
-    {
-      color: #444;
-    }
-
-    &.active
-    {
-      color: #4444ff;
-    }
+  li input
+  {
+    display: block;
+    width: 140px;
+    border-radius: 5px;
+    border: solid 2px #fff;
+    box-shadow: 9px 7px 20px -6px rgba(0,0,0,0.25);
   }
 }
 
 #card
 {
-    //background: #fff;
-    box-shadow: 9px 7px 40px -6px rgba(0,0,0,0.25);
-    overflow: hidden;
-    width: 300px;
+  box-shadow: 9px 7px 40px -6px rgba(0,0,0,0.25);
+  overflow: hidden;
+  width: 300px;
   padding: 0;
-    height: 400px;
+  height: 400px;
   min-height: 300px;
   margin: 20px;
   border-radius: 5px;
-  //border: solid 0px #fff;
   position: relative;
 
   .details
@@ -223,4 +226,14 @@ nav
   position: fixed;
   pointer-events: none;
 
+}
+
+footer
+{
+  font-weight: 300;
+  a {
+    font-style: italic;
+    text-decoration: none;
+    color: #0055FF;
+  }
 }

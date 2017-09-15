@@ -17,8 +17,10 @@ RSpec.describe 'Todos API', type: :request do
   end
 
   # Test suite for GET /weathers/:city_id
-  describe 'GET /weathers/:city_name' do
-    before { get "/weathers/#{city_name}" }
+  describe 'GET /:city_name' do
+    let(:city_name) { 'Ulaanbaatar' }
+
+    before { get "/#{city_name}" }
 
     context 'when the city exists' do
       it 'returns the weahter data' do
@@ -31,7 +33,9 @@ RSpec.describe 'Todos API', type: :request do
     end
 
     context 'when the city does not exist' do
-      let(:city_id) { 100 }
+      let(:city_name) { 100 }
+
+      before { get "/#{city_name}" }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -42,15 +46,4 @@ RSpec.describe 'Todos API', type: :request do
       end
     end
   end
-
-  describe 'GET /weathers/random' do
-    before { get "/weathers/random" }
-
-    it 'returns random weather data' do
-      expect(response.body).not_to be_empty
-    end
-
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
-    end
 end

@@ -1,14 +1,11 @@
 class WeathersController < ApplicationController
   def index
+    if params[:city_name]
+      query = params[:city_name]
+    else
+      raise JSON.parse(File.read(Rails.root.join('public', 'cities.json'))).to_s
+    end
 
-  end
-
-  def show
-
-  end
-
-
-  def random
     # used to make http request
     require 'net/http'
     # sending request

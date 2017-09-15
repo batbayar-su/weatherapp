@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :missing_error
   rescue_from ActionController::RoutingError, with: :missing_error
-  rescue_from StandardError, with: :unhandled_error
+  # rescue_from StandardError, with: :unhandled_error
 
   def missing_error(exception)
     render plain: '404 Not found', status: :not_found
