@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Todos API', type: :request do
+  # initialize 100 cities
+  let!(:cities) { create_list(:city, 100) }
+  let(:city_name) { cities.first.name }
 
   # Test suite for GET /
   describe 'GET /' do
@@ -19,7 +22,6 @@ RSpec.describe 'Todos API', type: :request do
   # Test suite for GET /?city_name=CityName
   describe 'GET /?city_name=CityName' do
     context 'when the city exists' do
-      let(:city_name) { 'Ulaanbaatar' }
 
       before { get "/?city_name=#{city_name}" }
 
@@ -41,8 +43,8 @@ RSpec.describe 'Todos API', type: :request do
         expect(response).to have_http_status(404)
       end
 
-      it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Todo/)
+      it 'returns a no data message' do
+        expect(response.body).to match /NO DATA/
       end
     end
   end

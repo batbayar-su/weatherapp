@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :missing_error
 
   def missing_error
-    render file: 'public/404.html'
+    render file: 'public/404.html', status: :not_found
   end
 
   private
