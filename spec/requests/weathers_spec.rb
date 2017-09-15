@@ -16,13 +16,13 @@ RSpec.describe 'Todos API', type: :request do
     end
   end
 
-  # Test suite for GET /weathers/:city_id
-  describe 'GET /:city_name' do
-    let(:city_name) { 'Ulaanbaatar' }
-
-    before { get "/#{city_name}" }
-
+  # Test suite for GET /?city_name=CityName
+  describe 'GET /?city_name=CityName' do
     context 'when the city exists' do
+      let(:city_name) { 'Ulaanbaatar' }
+
+      before { get "/?city_name=#{city_name}" }
+
       it 'returns the weahter data' do
         expect(response.body).not_to be_empty
       end
@@ -33,9 +33,9 @@ RSpec.describe 'Todos API', type: :request do
     end
 
     context 'when the city does not exist' do
-      let(:city_name) { 100 }
+      let(:city_name) { 'm' }
 
-      before { get "/#{city_name}" }
+      before { get "/?city_name=#{city_name}" }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)

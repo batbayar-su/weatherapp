@@ -1,12 +1,10 @@
 // 📝 Fetch all DOM nodes in jQuery and Snap SVG
-
 var container = $('.container');
 var card = $('#card');
 var innerSVG = Snap('#inner');
 var outerSVG = Snap('#outer');
 var backSVG = Snap('#back');
 var summary = $('#summary');
-var date = $('#date');
 var weatherContainer1 = Snap.select('#layer1');
 var weatherContainer2 = Snap.select('#layer2');
 var weatherContainer3 = Snap.select('#layer3');
@@ -54,7 +52,8 @@ var weathers = [
   { type: 'wind',    name: 'Windy'},
   { type: 'rain',    name: 'Rain'},
   { type: 'thunder', name: 'Storms'},
-  { type: 'sun',     name: 'Sunny'}
+  { type: 'sun',     name: 'Sunny'},
+  { type: 'missing', name: 'Missing'}
 ];
 
 // 🛠 app settings
@@ -94,7 +93,7 @@ function init()
   onResize();
 
   // ☁️ draw clouds
-
+  windex = 4;
   for(var i = 0; i < clouds.length; i++)
   {
     clouds[i].offset = Math.random() * sizes.card.width;
@@ -104,7 +103,15 @@ function init()
   // ☀️ set initial weather
 
   TweenMax.set(sunburst.node, {opacity: 0})
-  changeWeather(weathers[1]);
+  for(var i = 0; i < weathers.length; i++)
+  {
+    if(weathers[i]['type'] == '<%= @weather_type %>') {
+      windex = i;
+      break;
+    }
+  }
+
+  changeWeather(weathers[windex]);
 }
 
 function onResize()

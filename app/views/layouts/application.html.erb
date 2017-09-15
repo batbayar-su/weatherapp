@@ -25,19 +25,21 @@
         c37.2,6.4,72.7,19.2,105.4,38L22-40.9z"/>
       </svg>
       <nav>
+        <%= form_tag nil, method: :get, id: 'search_form' do %>
         <ul>
           <li><%= link_to 'Random', root_path %></li>
-          <li><input type="text"></li>
-          <li><a id="search_button" href="javascript:void(0)">Search</a></li>
+          <li><%= text_field_tag :city_name, params[:city_name], placeholder: "City name" %></li>
+          <li><%= link_to 'Search', "javascript:void(0)", :onclick => "$('#search_form')[0].submit()" %></li>
         </ul>
+        <% end %>
       </nav>
       <%= yield %>
       <svg id="outer"></svg>
       <footer><a href="https://codepen.io/steveg3003/pen/Gqakbo?q=weather%20icons&limit=all&order=popularity&depth=everything&show_forks=false">Design</a> by Steve Gardner</footer>
     </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js' %>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js' %>
   <%= javascript_include_tag 'application' %>
 </body>
 </html>
