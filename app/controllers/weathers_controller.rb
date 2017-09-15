@@ -1,7 +1,7 @@
 class WeathersController < ApplicationController
   def index
     # initialize sunny weather
-    @weather_type = 'sunny'
+    @weather_type = 'cloud'
     # used to make http request
     require 'net/http'
     # get random city if there is no user input
@@ -20,20 +20,13 @@ class WeathersController < ApplicationController
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)
     }
-
     # parse json
     @result = JSON.parse(res.body)
 
     # throw record not found when data not found to show 404 page
     raise ActiveRecord::RecordNotFound if @result['cod'] == '404'
 
-    # # converting weather type
-    # case @result['cod']
-    #   when condition
-    #     @weather_type
-    #   when condition
-
-    # end
-
+    # setting weather type
+    @weather_type = @result['weather'][0]['main'].to_s.downcase
   end
 end

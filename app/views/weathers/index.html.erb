@@ -1,3 +1,7 @@
+<% content_for :javascript do %>
+<script>weather_type='<%= @weather_type %>'</script>
+<%= javascript_include_tag :weathers %>
+<% end %>
 <div id="card" class="weather">
   <svg id="inner">
     <defs>
