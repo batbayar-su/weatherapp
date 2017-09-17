@@ -35,8 +35,8 @@
       </nav>
       <nav>
         <ul>
-          <li><%= link_to 'Celsius', root_path(unit: 'metric') %></li>
-          <li><%= link_to 'Fahrenheit', root_path(unit: 'imperial') %></li>
+          <li><%= link_to 'Celsius', root_path(unit: 'metric', city_name: params[:city_name]) %></li>
+          <li><%= link_to 'Fahrenheit', root_path(unit: 'imperial', city_name: params[:city_name]) %></li>
         </ul>
       </nav>
       <%= yield %>
