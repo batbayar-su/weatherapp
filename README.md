@@ -1,6 +1,6 @@
 # Weather Application
 
-demo: https://weatherapp-careerfoundry.herokuapp.com/
+demo: https://weather-web-app.herokuapp.com/
 
 ### Current features
 
